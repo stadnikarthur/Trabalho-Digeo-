@@ -1,0 +1,49 @@
+
+import os
+
+def buscar_a(caminho, extensoes):
+    arquivos_enc = []
+    for pasta_raiz, _, arquivos in os.walk(caminho):
+        for arquivo in arquivos:
+            if arquivo.endswith(tuple(extensoes)):
+                caminho_completo = os.path.join(pasta_raiz
+                                                , arquivo)
+                arquivos_enc.append(caminho_completo)
+    return arquivos_enc
+
+def relatorio(arquivos):
+    if not arquivos:
+        print("Seu computador está limpo!!")
+    else:
+        print("Os arquivos solicitados foram encontrados! ")
+        for arquivo in arquivos:
+            print(arquivo)
+def remover_arq(arquivos):  
+    for arquivo in arquivos:
+        try:
+            os.remove(arquivo)
+            print(f"Arquivos removido com sucesso: {arquivo}")
+        except Exception as e:
+            print(f"Falha ao remover o arquivo :( {arquivo}: {str(e)}")
+
+def main():
+    
+    busca = os.getcwd()  
+    extensoes = (".exe", ".bat")
+
+
+    arquivos_enc = buscar_a(busca, extensoes)
+
+   
+    relatorio(arquivos_enc)
+
+    
+    remover = input("Deseja remover os arquivos encontrados? (sim/não): ").lower()
+    if remover == 'sim':
+        remover_arq(arquivos_enc)
+    else:
+        if remover == 'não':    
+            print("Arquivos mantidos!! ")
+
+if __name__ == "__main__":
+    main()
