@@ -1,4 +1,4 @@
-
+#Código feito em python! O objetivo do código é encontrar arquivos do tipo .exe e .bat. O programa está importado para encontrar arquivos na pasta raiz que está localizada o import do programa atravéz do "busca = os.getcwd()"!!
 import os
 
 def buscar_a(caminho, extensoes):
